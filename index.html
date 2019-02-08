@@ -14,21 +14,32 @@
 </head>
 <body>
 <div id="app">
-    <p v-html="mesages"></p>
+    <p v-html="lumos(wizard)"></p>
 </div>
 
 <script>
 
    function emojify(name) {
-       var out = '<img src="emojis/' + name + '.png">
+       var out = '<img src="emojis/' + name + '.png">'
                return out
    }
 
-   var app = new Vue({
-       el: ":#app",
-       data: {
-           messages: "Hello, world"
+   function cast(emoji) {
+       if(!emoji) {
+           emoji = "¯\\_(ツ)_/¯"
+       }
+       return function (wizard) {
+           return emoji + wizard + emoji
+       }
+   }
 
+   var app = new Vue({
+       el: "#app",
+       data: {
+            wizard: emojify("wizard")
+        },
+        methods: {
+           lumos: cast(emojify("lumos"))
         }
   })
 
