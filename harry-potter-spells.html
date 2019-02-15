@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.css">
+    <link rel="stylesheet" href="css/debug.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Emoji Color Picker</title>
+</head>
+<body>
+<div id="app">
+    <wizard :name="harry" :cast="oculus_reparo"></wizard>
+    <wizard :name="ron" :cast="wingardium_leviosa"></wizard>
+    <wizard :name="hermione" :cast="alohomora"></wizard>
+</div>
+
+<script>
+
+    function emojify(name) {
+        var out = '<img src="emojis/' + name + '.png">'
+        return out
+    }
+
+    function cast(emoji) {
+        var magic = emojify("magic")
+        return function (wizard) {
+            return wizard + " " + magic + " " + emoji + " " + magic
+        }
+    }
+
+    Vue.component("wizard", {
+        props: ["name", "cast"],
+        template: '<p v-html="cast(name)"></p>'
+    })
+
+    var app = new Vue({
+        el: "#app",
+        data: {
+            harry: emojify("harry"),
+            ron: emojify("ron"),
+            hermione: emojify("hermione")
+        },
+        methods: {
+            oculus_reparo: cast(emojify("oculus-reparo")),
+            wingardium_leviosa: cast(emojify("wingardium-leviosa")),
+            alohomora: cast(emojify("alohomora"))
+
+        }
+    })
+
+
+</script>
+
+</body>
+</html>
