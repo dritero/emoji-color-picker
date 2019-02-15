@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="app">
-    <p v-html="lumos(wizard)"></p>
+    <p v-html="incendio(lumos(wizard))"></p>
 </div>
 
 <script>
@@ -39,7 +39,8 @@
             wizard: emojify("wizard")
         },
         methods: {
-           lumos: cast(emojify("lumos"))
+           lumos: cast(emojify("lumos")),
+           incendio: cast(emojify("incendio"))
         }
   })
 
